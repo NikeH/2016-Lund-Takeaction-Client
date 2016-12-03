@@ -3,6 +3,7 @@ package org.actionaid.actnow;
 // Slightly inspired by https://stackoverflow.com/a/8166802/3605357
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,13 @@ public class ListAdapter extends ArrayAdapter<String> {
                 title.setText(p);
                 body.setText(p);
             }
+
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), TakeAction.class);
+                    getContext().startActivity(intent);
+                }
+            });
 /*
             if (tt2 != null) {
                 tt2.setText(p.getCategory().getId());
