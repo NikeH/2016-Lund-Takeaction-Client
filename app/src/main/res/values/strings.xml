@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Act Now</string>
     <string name="button_return">Return</string>
-    <string name="act_header">Take Action</string>
+    <string name="act_header">Description</string>
     <string name="act_infoTitle">What is the problem?</string>
     <string name="act_actTitle">What can you do?</string>
 </resources>
