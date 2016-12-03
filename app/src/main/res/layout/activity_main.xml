@@ -10,15 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.actionaid.actnow.MainActivity">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:gravity="left"
-        android:text="view text with act button test"
-        android:textSize="22sp"
-        android:id="@+id/textView" />
-
         <Button
             android:text="Settings"
             android:layout_width="wrap_content"
@@ -30,3 +21,4 @@
 
 
 </RelativeLayout>
+
