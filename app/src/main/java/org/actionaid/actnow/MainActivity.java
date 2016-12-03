@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Actions!");
+        setTitle("Actions");
         setContentView(R.layout.activity_main);
 
 
@@ -44,9 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(getApplicationContext(), TakeAction.class);
                 startActivity(i);
             }
+
         });
         topRelativeLayout.addView(actNow);*/
-    }
+
 
     public void openSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
