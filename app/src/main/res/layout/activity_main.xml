@@ -10,6 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.actionaid.actnow.MainActivity">
 
+
         <Button
             android:text="Settings"
             android:layout_width="wrap_content"
@@ -17,7 +18,7 @@
             android:id="@+id/settingsButton"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:onClick="openSettings"/>
+            android:onClick="openTakeAction"/>
 
 
 </RelativeLayout>
