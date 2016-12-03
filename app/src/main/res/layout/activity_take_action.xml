@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:text="@string/button_return"
         android:layout_centerHorizontal="true"
-        android:onClick="openSettings"/>
+        android:onClick="goBack"/>
 
     </LinearLayout>
 
