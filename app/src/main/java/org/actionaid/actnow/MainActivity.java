@@ -1,6 +1,7 @@
 package org.actionaid.actnow;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,6 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,9 +30,41 @@ public class MainActivity extends AppCompatActivity {
         RetrieveFeedTask retrieve = new RetrieveFeedTask();
         retrieve.setMainActivity(this);
         retrieve.execute();
+
+        while(retrieve.getStatus() != AsyncTask.Status.FINISHED){}  //wait untill finished
+
         lv = (ListView) findViewById(R.id.articleList);
 
-        ArrayList<String> articles = new ArrayList<String>();
+
+        JSONObject obj = new JSONObject();
+        try {
+
+            obj = new JSONObject(data);
+
+            Log.d("Main activity", obj.toString());
+
+        } catch (Throwable t) {
+            Log.e("Main activity", "Could not parse malformed JSON: \"" + data + "\"");
+        }
+
+        try {
+        JSONArray items = obj.getJSONArray("items");
+
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject c = items.getJSONObject(i);
+
+            String id = c.getString("id");
+            String title = c.getString("title");
+            String body = c.getString("body");
+            String date = c.getString("date");
+        }
+        } catch (final JSONException e) {
+            Log.e("Json parsing error: " , e.getMessage());
+            }
+
+
+            ArrayList<String> articles = new ArrayList<String>();
         articles.add("asdf");
         articles.add("ghjk");
         articles.add("ghjk");
