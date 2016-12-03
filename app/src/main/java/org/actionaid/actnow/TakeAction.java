@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 public class TakeAction extends AppCompatActivity {
+    private String headline;
+    private String info;
+    private String actions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
