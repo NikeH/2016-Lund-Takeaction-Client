@@ -28,7 +28,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"
                     android:onClick="openSettings"
-                    android:layout_height="100px"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal" />
         </LinearLayout>
 
