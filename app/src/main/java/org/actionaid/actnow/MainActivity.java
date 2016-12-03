@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
             buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
             actNow.setLayoutParams(buttonParams);
             actNow.setGravity(Gravity.RIGHT);
-            topRelativeLayout.addView(actNow);
+            actNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent i = new Intent(getApplicationContext(), TakeAction.class);
+                startActivity(i);
+            }
+            });
+        topRelativeLayout.addView(actNow);
     }
 
     public void openSettings(View view){
