@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the type of list view as a second parameter and your
         // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> arrayAdapter = new ListAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
                 articles );
