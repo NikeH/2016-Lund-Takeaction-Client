@@ -44,4 +44,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
+    public void openTakeAction(View view){
+        Intent intent = new Intent(this, TakeAction.class);
+        startActivity(intent);
+    }
 }
