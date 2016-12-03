@@ -1,24 +1,18 @@
 package org.actionaid.actnow;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private String data;
     private ListView lv;
 
     @Override
@@ -26,7 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Actions");
         setContentView(R.layout.activity_main);
-
+        RetrieveFeedTask retrieve = new RetrieveFeedTask();
+        retrieve.setMainActivity(this);
+        retrieve.execute();
         lv = (ListView) findViewById(R.id.articleList);
 
         ArrayList<String> articles = new ArrayList<String>();
@@ -91,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
     public void openSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void fillData(String data) {
+        this.data = data;
     }
 
     public void openTakeAction(View view){
