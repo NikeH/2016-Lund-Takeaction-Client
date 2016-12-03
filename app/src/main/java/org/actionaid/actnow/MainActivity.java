@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Main activity", "Could not parse malformed JSON: \"" + data + "\"");
         }
 
-        ArrayList<String> articles = new ArrayList<String>();
+        ArrayList<ArticleData> articles = new ArrayList<ArticleData>();
         try {
         JSONArray items = obj.getJSONArray("items");
 
@@ -56,11 +56,13 @@ public class MainActivity extends AppCompatActivity {
             JSONObject c = items.getJSONObject(i);
 
             String id = c.getString("id");
+            String date = c.getString("date");
             String title = c.getString("title");
             String body = c.getString("body");
-            String date = c.getString("date");
 
-            articles.add(title);
+            ArticleData ad = new ArticleData(id, date, title, body);
+
+            articles.add(ad);
         }
         } catch (final JSONException e) {
             Log.e("Json parsing error: " , e.getMessage());
@@ -70,10 +72,10 @@ public class MainActivity extends AppCompatActivity {
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the type of list view as a second parameter and your
         // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ListAdapter(
+        ArrayAdapter<ArticleData> arrayAdapter = new ListAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
-                articles );
+                articles);
 
         lv.setAdapter(arrayAdapter);
 

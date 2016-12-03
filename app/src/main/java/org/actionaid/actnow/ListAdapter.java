@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ListAdapter extends ArrayAdapter<String> {
+public class ListAdapter extends ArrayAdapter<ArticleData> {
 
     public ListAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
     }
 
-    public ListAdapter(Context context, int resource, List<String> items) {
+    public ListAdapter(Context context, int resource, List<ArticleData> items) {
         super(context, resource, items);
     }
 
@@ -34,7 +34,7 @@ public class ListAdapter extends ArrayAdapter<String> {
             v = vi.inflate(R.layout.article_item, null);
         }
 
-        String p = getItem(position);
+        ArticleData p = getItem(position);
 
         if (p != null) {
             TextView date = (TextView) v.findViewById(R.id.date);
@@ -43,9 +43,9 @@ public class ListAdapter extends ArrayAdapter<String> {
             Button button = (Button) v.findViewById(R.id.actButton);
 
             if (date != null) {
-                date.setText(p);
-                title.setText(p);
-                body.setText(p);
+                date.setText(p.getDate());
+                title.setText(p.getTitle());
+                body.setText(p.getBody());
             }
 
             button.setOnClickListener(new View.OnClickListener() {
