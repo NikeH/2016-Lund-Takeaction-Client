@@ -17,12 +17,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setTitle("Actions!");
         setContentView(R.layout.activity_main);
 
 
         final RelativeLayout topRelativeLayout = (RelativeLayout) findViewById(R.id.activity_main);
-
-
 
             final TextView topicTest = new TextView(this);
             topicTest.setText("2/12 Demonstration for civil rights");

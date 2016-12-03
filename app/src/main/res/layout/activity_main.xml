@@ -18,7 +18,7 @@
             android:id="@+id/settingsButton"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:onClick="openTakeAction"/>
+            android:onClick="openSettings"/>
 
 
 </RelativeLayout>
