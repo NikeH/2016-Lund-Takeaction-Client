@@ -29,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RetrieveFeedTask retrieve = new RetrieveFeedTask();
         retrieve.setMainActivity(this);
-        retrieve.execute();
+        try {
+           data = retrieve.execute().get();
+        } catch (Exception e) {
 
-        while(retrieve.getStatus() != AsyncTask.Status.FINISHED){}  //wait untill finished
+        }
 
         lv = (ListView) findViewById(R.id.articleList);
-
 
         JSONObject obj = new JSONObject();
         try {
@@ -47,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
             Log.e("Main activity", "Could not parse malformed JSON: \"" + data + "\"");
         }
 
+        ArrayList<String> articles = new ArrayList<String>();
         try {
         JSONArray items = obj.getJSONArray("items");
-
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject c = items.getJSONObject(i);
@@ -58,25 +59,13 @@ public class MainActivity extends AppCompatActivity {
             String title = c.getString("title");
             String body = c.getString("body");
             String date = c.getString("date");
+
+            articles.add(title);
         }
         } catch (final JSONException e) {
             Log.e("Json parsing error: " , e.getMessage());
             }
 
-
-            ArrayList<String> articles = new ArrayList<String>();
-        articles.add("asdf");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
 
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the type of list view as a second parameter and your
