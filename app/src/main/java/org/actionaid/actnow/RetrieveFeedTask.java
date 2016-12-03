@@ -23,7 +23,7 @@ class RetrieveFeedTask extends AsyncTask<Void, Void, String> {
 
 
         try {
-            URL url = new URL("https://action-aid.herokuapp.com/api/v1/articles.json?cause=global%20warming;location=27.234,57.708");
+            URL url = new URL("https://action-aid.herokuapp.com/api/v1/articles.json?cause=inequality;location=27.234,57.708");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             try {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
