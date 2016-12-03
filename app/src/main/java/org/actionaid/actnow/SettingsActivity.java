@@ -18,6 +18,7 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Settings");
         setContentView(R.layout.activity_settings);
 
         sharedPref = this.getPreferences(Context.MODE_PRIVATE);

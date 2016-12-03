@@ -10,6 +10,7 @@ public class TakeAction extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Take Action");
         setContentView(R.layout.activity_take_action);
     }
 
