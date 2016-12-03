@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,6 +52,12 @@ public class MainActivity extends AppCompatActivity {
                 articles );
 
         lv.setAdapter(arrayAdapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> list, View v, int pos, long id) {
+                openTakeAction(lv);
+            }
+        });
     }
 
 
@@ -83,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    public void openTakeAction(View view){
+        Intent intent = new Intent(this, TakeAction.class);
         startActivity(intent);
     }
 }
