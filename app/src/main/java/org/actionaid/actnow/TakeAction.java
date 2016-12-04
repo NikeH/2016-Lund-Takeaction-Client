@@ -13,9 +13,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class TakeAction extends AppCompatActivity {
-    private String headline;
-    private String infoText = "info";
-    private String actionsText = "actions";
+    private String infoTitleText = "What is the problem?";
+    private String infoText = "The rich keep getting richer. Sixty-three people own 90% of the world's money. Let's change that. Robin Hood!";
+    private String actionTitleText = "What can you do?";
+    private String[] actions = new String[]{"Join the demonstration", "Donate", "Tweet"};
+    private String actionsText = "- " + actions[0] + "\n- " + actions[1] + "\n- " + actions[2];
     private int padding = 25;
 
     @Override
@@ -33,7 +35,7 @@ public class TakeAction extends AppCompatActivity {
         main.setOrientation(LinearLayout.VERTICAL);
 
         TextView infoTitle = new TextView(this);
-        infoTitle.setText("What is the problem?");
+        infoTitle.setText(infoTitleText);
         infoTitle.setTextSize(20);
         infoTitle.setTextColor(Color.BLACK);
         //infoTitle.setGravity(View.TEXT_ALIGNMENT_CENTER);
@@ -42,7 +44,7 @@ public class TakeAction extends AppCompatActivity {
         info.setText(infoText + "\n");
 
         TextView actTitle = new TextView(this);
-        actTitle.setText("What can you do?");
+        actTitle.setText(actionTitleText);
         actTitle.setTextSize(20);
         actTitle.setTextColor(Color.BLACK);
 
