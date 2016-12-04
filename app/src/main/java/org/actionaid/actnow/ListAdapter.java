@@ -40,28 +40,13 @@ public class ListAdapter extends ArrayAdapter<ArticleData> {
             TextView date = (TextView) v.findViewById(R.id.date);
             TextView title = (TextView) v.findViewById(R.id.title);
             TextView body = (TextView) v.findViewById(R.id.body);
-            Button button = (Button) v.findViewById(R.id.actButton);
+            //Button button = (Button) v.findViewById(R.id.actButton);
 
             if (date != null) {
                 date.setText(p.getDate());
                 title.setText(p.getTitle());
                 body.setText(p.getBody());
             }
-
-            button.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), TakeAction.class);
-                    getContext().startActivity(intent);
-                }
-            });
-/*
-            if (tt2 != null) {
-                tt2.setText(p.getCategory().getId());
-            }
-
-            if (tt3 != null) {
-                tt3.setText(p.getDescription());
-            }*/
         }
 
         return v;
