@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Actions");
+        setTitle("Current Activities");
         setContentView(R.layout.activity_main);
         RetrieveFeedTask retrieve = new RetrieveFeedTask();
         retrieve.setMainActivity(this);
@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 date = day + "/" + month;
             }
             ArticleData ad = new ArticleData(id, date, title, body);
-
             articles.add(ad);
         }
         } catch (final JSONException e) {
