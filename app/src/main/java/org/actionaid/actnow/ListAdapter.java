@@ -40,7 +40,7 @@ public class ListAdapter extends ArrayAdapter<ArticleData> {
         if (p != null) {
             TextView date = (TextView) v.findViewById(R.id.date);
             date.setTextColor(Color.rgb(201,24,34));
-            date.setTextSize(37);
+            date.setTextSize(33);
             TextView title = (TextView) v.findViewById(R.id.title);
             title.setTextColor(Color.BLACK);
             title.setTextSize(20);

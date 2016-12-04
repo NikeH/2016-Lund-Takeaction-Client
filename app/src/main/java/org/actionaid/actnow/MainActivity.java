@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
             if(date.equals("null")){
                 date = "";
+            } else {
+               String month = date.substring(5,7);
+                String day = date.substring(8,10);
+                date = day + "/" + month;
             }
             ArticleData ad = new ArticleData(id, date, title, body);
 
