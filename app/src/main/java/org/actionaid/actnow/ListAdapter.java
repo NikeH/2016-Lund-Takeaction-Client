@@ -4,6 +4,7 @@ package org.actionaid.actnow;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,12 @@ public class ListAdapter extends ArrayAdapter<ArticleData> {
 
         if (p != null) {
             TextView date = (TextView) v.findViewById(R.id.date);
+            date.setTextColor(Color.rgb(201,24,34));
+            date.setTextSize(37);
             TextView title = (TextView) v.findViewById(R.id.title);
+            title.setTextColor(Color.BLACK);
+            title.setTextSize(20);
             TextView body = (TextView) v.findViewById(R.id.body);
-            //Button button = (Button) v.findViewById(R.id.actButton);
 
             if (date != null) {
                 date.setText(p.getDate());

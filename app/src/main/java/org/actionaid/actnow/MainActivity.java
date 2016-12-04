@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
             String title = c.getString("title");
             String body = c.getString("body");
 
+            if(date.equals("null")){
+                date = "";
+            }
             ArticleData ad = new ArticleData(id, date, title, body);
 
             articles.add(ad);
