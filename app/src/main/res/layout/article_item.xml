@@ -6,9 +6,9 @@
     android:orientation="horizontal">
 
     <TextView
-        android:text="13/13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:id="@+id/date"
         android:layout_weight="1" />
 
@@ -19,13 +19,11 @@
         android:layout_weight="1">
 
         <TextView
-            android:text="sample title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/title" />
 
         <TextView
-            android:text="sample body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/body" />
