@@ -1,24 +1,25 @@
 package org.actionaid.actnow;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private String data;
     private ListView lv;
 
     @Override
@@ -26,30 +27,62 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle("Actions");
         setContentView(R.layout.activity_main);
+        RetrieveFeedTask retrieve = new RetrieveFeedTask();
+        retrieve.setMainActivity(this);
+        try {
+           data = retrieve.execute().get();
+        } catch (Exception e) {
+
+        }
 
         lv = (ListView) findViewById(R.id.articleList);
 
-        ArrayList<String> articles = new ArrayList<String>();
-        articles.add("asdf");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
-        articles.add("ghjk");
+        JSONObject obj = new JSONObject();
+        try {
+
+            obj = new JSONObject(data);
+
+            Log.d("Main activity", obj.toString());
+
+        } catch (Throwable t) {
+            Log.e("Main activity", "Could not parse malformed JSON: \"" + data + "\"");
+        }
+
+        ArrayList<ArticleData> articles = new ArrayList<ArticleData>();
+        try {
+        JSONArray items = obj.getJSONArray("items");
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject c = items.getJSONObject(i);
+
+            String id = c.getString("id");
+            String date = c.getString("date");
+            String title = c.getString("title");
+            String body = c.getString("body");
+
+            if(date.equals("null")){
+                date = "";
+            } else {
+               String month = date.substring(5,7);
+                String day = date.substring(8,10);
+                date = day + "/" + month;
+            }
+            ArticleData ad = new ArticleData(id, date, title, body);
+
+            articles.add(ad);
+        }
+        } catch (final JSONException e) {
+            Log.e("Json parsing error: " , e.getMessage());
+            }
+
 
         // This is the array adapter, it takes the context of the activity as a
         // first parameter, the type of list view as a second parameter and your
         // array as a third parameter.
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+        ArrayAdapter<ArticleData> arrayAdapter = new ListAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
-                articles );
+                articles);
 
         lv.setAdapter(arrayAdapter);
 
@@ -60,37 +93,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-/*        final RelativeLayout topRelativeLayout = (RelativeLayout) findViewById(R.id.activity_main);
-
-        final TextView topicTest = new TextView(this);
-        topicTest.setText("2/12 Demonstration for civil rights");
-        topicTest.setGravity(Gravity.LEFT);
-        topRelativeLayout.addView(topicTest);
-        RelativeLayout.LayoutParams textviewParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        textviewParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-        topicTest.setLayoutParams(textviewParams);
-
-        final Button actNow = new Button(this);
-        actNow.setText("Act now!");
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        actNow.setLayoutParams(buttonParams);
-        actNow.setGravity(Gravity.RIGHT);
-        actNow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TakeAction.class);
-                startActivity(i);
-            }
-
-        });
-        topRelativeLayout.addView(actNow);*/
-
-
     public void openSettings(View view){
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
+    }
+
+    public void fillData(String data) {
+        this.data = data;
     }
 
     public void openTakeAction(View view){
